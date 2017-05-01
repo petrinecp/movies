@@ -1,41 +1,29 @@
-/* Hide un-compiled mustache bindings
-until the Vue instance is ready */
+<template>
+  <div id="app">
+    <div class="bar">
 
-[v-cloak] {
-  display: none;
+      <!-- These two buttons switch the layout variable,
+        which causes the correct UL to be shown. -->
+      <a class="list-icon"></a>
+      <router-link to="/" class="grid-icon active"></router-link>
+    </div>
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'app'
 }
+</script>
 
-*{
-	margin:0;
-	padding:0;
+<style>
+body {
+  margin: 0;
+  background-color: #f5f5f5;
 }
-
-body{
-	font:15px/1.3 'Open Sans', sans-serif;
-	color: #5e5b64;
-	text-align:center;
-}
-
-a, a:visited {
-	outline:none;
-	color:#389dc1;
-}
-
-a:hover{
-	text-decoration:none;
-}
-
-section, footer, header, aside, nav{
-	display: block;
-}
-
-/*-------------------------
-	The search input
---------------------------*/
-
 .bar{
 	background-color:#5c9bb7;
-	background-image:-webkit-linear-gradient(bottom, #5c9bb7, #5392ad);
 	background-image:linear-gradient(to top, #5c9bb7, #5392ad);
 
 	box-shadow: 0 1px 1px #ccc;
@@ -89,74 +77,11 @@ section, footer, header, aside, nav{
 	text-indent: 40px;
 }
 
-/*-------------------------
-	List layout
---------------------------*/
-
-ul.list{
-	list-style: none;
-	width: 500px;
-	margin: 0 auto;
-	text-align: left;
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
-
-ul.list li{
-	border-bottom: 1px solid #ddd;
-	padding: 10px;
-	overflow: hidden;
-}
-
-ul.list li img{
-	width:120px;
-	height:120px;
-	float:left;
-	border:none;
-}
-
-ul.list li p{
-	margin-left: 135px;
-	font-weight: bold;
-	color:#6e7a7f;
-}
-
-/*-------------------------
-	Grid layout
---------------------------*/
-
-div.grid{
-	width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-div.grid a:hover div {
-  visibility: visible;
-}
-
-div.grid div{
-	padding: 2px;
-  width: 185px;
-	/*float:left;*/
-}
-
-div.grid div img{
-	/*width:280px;*/
-	/*height:280px;*/
-	border:none;
-}
-
-.tooltip {
-  visibility: hidden;
-  height: 40px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  position: relative;
-  top: -40px;
-  background-color: rgba(255, 255, 255, .9);
-}
+</style>
