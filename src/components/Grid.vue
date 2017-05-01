@@ -1,14 +1,18 @@
 <template>
   <div class="grid">
-    <div class="grid-item" v-for="m in movies.slice(0,6)">
+    <div class="grid-item" v-for="m in items.slice(0,6)">
 			<a :href="m.url" target="_blank"><img :src="m.poster_path" />
         <div class="tooltip">
           <h3 class="grid-item-title">{{m.title}}</h3>
         </div>
       </a>
-      <div class="rating">
+      <div class="rating imdb">
         <span data-title="IMDB Rating">★ 6.5</span>
         <img src="../assets/imdb.png" />
+      </div>
+      <div class="rating csfd">
+        <img src="../assets/imdb.png" />
+        <span data-title="CSFD Rating">73 %</span>
       </div>
 		</div>
   </div>
@@ -19,12 +23,13 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'grid',
-  computed: mapState([
-    'movies'
-  ]),
-  mounted: function () {
-    this.$store.dispatch('LOAD_MOVIE_LIST')
-  }
+  props: ['items']
+  // computed: mapState([
+  //   'movies'
+  // ]),
+  // mounted: function () {
+  //   this.$store.dispatch('LOAD_MOVIE_LIST')
+  // }
 }
 </script>
 
@@ -41,7 +46,7 @@ div.grid a:hover div {
 }
 
 .grid-item {
-	padding: 0 2px 0 2px;
+	margin: 0 10px 0 2px;
   width: 185px;
   height: 278px;
   overflow: hidden;
@@ -85,8 +90,18 @@ div.grid div img{
     transition: all 0.5s ease;
 }
 
-.rating:hover {
+.rating.csfd {
+  right: inherit;
+  left: -46px;
+}
+
+.rating.imdb:hover {
   right: 0;
+}
+
+.rating.csfd:hover {
+  right: inherit;
+  left: 0px;
 }
 
 .rating img {

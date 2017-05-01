@@ -4,13 +4,13 @@
       <div class="section-header">
         <h2 class="section-title">Čoskoro v kinách</h2>
       </div>
-      <grid></grid>
+      <grid :items="upcomingMovies"></grid>
     </div>
     <div class="section">
       <div class="section-header">
         <h2 class="section-title">Populárne</h2>
       </div>
-      <grid></grid>
+      <grid :items="movies"></grid>
     </div>
   </div>
 </template>
@@ -23,6 +23,13 @@ export default {
   name: 'movies',
   components: {
     Grid
+  },
+  computed: mapState([
+    'movies', 'upcomingMovies'
+  ]),
+  mounted: function () {
+    this.$store.dispatch('LOAD_MOVIE_LIST');
+    this.$store.dispatch('LOAD_UPCOMING_MOVIES');
   }
 }
 </script>
