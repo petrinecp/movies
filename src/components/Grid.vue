@@ -1,10 +1,15 @@
 <template>
   <div class="grid">
-    <div v-for="m in movies.slice(0,6)">
+    <div class="grid-item" v-for="m in movies.slice(0,6)">
 			<a :href="m.url" target="_blank"><img :src="m.poster_path" />
-        <div class="tooltip">{{m.title}}</div>
+        <div class="tooltip">
+          <h3 class="grid-item-title">{{m.title}}</h3>
+        </div>
       </a>
-      <span data-title="IMDB Rating">★ 6.5</span>
+      <div class="rating">
+        <span data-title="IMDB Rating">★ 6.5</span>
+        <img src="../assets/imdb.png" />
+      </div>
 		</div>
   </div>
 </template>
@@ -13,7 +18,7 @@
 import { mapState } from 'vuex'
 
 export default {
-  name: 'drid',
+  name: 'grid',
   computed: mapState([
     'movies'
   ]),
@@ -24,7 +29,7 @@ export default {
 </script>
 
 <style scoped>
-div.grid{
+.grid {
 	width: 100%;
   display: flex;
   justify-content: center;
@@ -35,23 +40,40 @@ div.grid a:hover div {
   visibility: visible;
 }
 
-div.grid div{
-	padding: 2px;
+.grid-item {
+	padding: 0 2px 0 2px;
   width: 185px;
+  height: 278px;
+  overflow: hidden;
   position: relative;
-	/*float:left;*/
+}
+
+.grid-item:hover .tooltip {
+  transform: translate3d(0, 0, 0);
+}
+
+.grid-item:hover .grid-item-title {
+  transform: translate3d(0, 0, 0);
+}
+
+.grid-item-title {
+  margin: 0;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  transition-delay: 0.05s;
+  transition: transform 0.35s;
+  transform: translate3d(0, 200%, 0);
 }
 
 div.grid div img{
-	/*width:280px;*/
-	/*height:280px;*/
 	border:none;
 }
 
-.grid span {
+.rating {
     position: absolute;
     top: 10px;
-    right: 0px;
+    right: -46px;
     z-index: 100;
     display: inline-block;
     background-color: #fccd3d;
@@ -60,15 +82,39 @@ div.grid div img{
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.rating:hover {
+  right: 0;
+}
+
+.rating img {
+  vertical-align: bottom;
 }
 
 .tooltip {
-  visibility: hidden;
+  top: auto;
+  bottom: 0;
+  padding: 1em;
+  height: auto;
+  width: 100%;
+  background: #252d31;
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+  position: absolute;
+  color: #fff;
+  /*visibility: hidden;
   height: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
   position: relative;
   top: -40px;
   background-color: rgba(255,255,255,0.9);
+  transition: transform 0.35s;
+  transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 0, 0);*/
 }
 </style>

@@ -22,8 +22,13 @@ body {
   margin: 0;
   background-color: #f5f5f5;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 .bar{
-	background-color:#5c9bb7;
+	background-color: #5c9bb7;
 	background-image:linear-gradient(to top, #5c9bb7, #5392ad);
 
 	box-shadow: 0 1px 1px #ccc;
