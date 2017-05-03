@@ -1,9 +1,9 @@
 <template>
   <div class="grid">
-    <div class="grid-item" v-for="m in items.slice(0,6)">
-			<a :href="m.url" target="_blank"><img :src="m.poster_path" />
+    <div class="grid-item" v-for="i in items.slice(0,6)">
+			<a :href="i.url" target="_blank"><img :src="i.poster_path" />
         <div class="tooltip">
-          <h3 class="grid-item-title">{{m.title}}</h3>
+          <h3 class="grid-item-title">{{i.title}}</h3>
         </div>
       </a>
       <div class="rating imdb">
@@ -19,17 +19,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   name: 'grid',
   props: ['items']
-  // computed: mapState([
-  //   'movies'
-  // ]),
-  // mounted: function () {
-  //   this.$store.dispatch('LOAD_MOVIE_LIST')
-  // }
 }
 </script>
 
